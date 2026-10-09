@@ -26,6 +26,10 @@ test("public demo build includes all lessons without account features", (context
 
   assert.match(html, /data-public-demo="true"/);
   assert.match(html, /public-demo-notice/);
+  assert.match(html, /href="https:\/\/docs\.google\.com\/forms\/d\/e\/1FAIpQLSfNk6Mc9DG4WV4Y8wLnEANXO6Ny8EBt9bycGQk_Jo_BgVz9EQ\/viewform\?usp=header"/);
+  assert.match(html, /Report your installation/);
+  assert.match(html, /does not independently verify an installation/);
+  assert.match(html, /parent or guardian's approval/);
   assert.equal(catalogue.branches.length, 8);
   assert.equal(lessons.length, 89);
   assert.ok(lessons.every((lesson) => typeof lesson.intro === "string"));

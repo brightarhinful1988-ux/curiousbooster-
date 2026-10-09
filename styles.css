@@ -269,6 +269,30 @@ a:focus-visible {
   color: var(--ink);
 }
 
+.install-report {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.install-report h3 {
+  margin: 0 0 8px;
+  color: var(--ink);
+  font-family: "Manrope", sans-serif;
+  font-size: 16px;
+}
+
+.install-report .account-credit-explainer {
+  margin-bottom: 12px;
+}
+
+.install-report-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
 .secondary-button {
   min-height: 40px;
   padding: 0 14px;
