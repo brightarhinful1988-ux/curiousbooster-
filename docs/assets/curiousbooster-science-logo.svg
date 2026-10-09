@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <defs>
+    <linearGradient id="glass" x1="13" y1="9" x2="37" y2="39" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff" stop-opacity=".98"/>
+      <stop offset=".42" stop-color="#d9f4ff" stop-opacity=".86"/>
+      <stop offset="1" stop-color="#7bc5e8" stop-opacity=".94"/>
+    </linearGradient>
+    <linearGradient id="glassEdge" x1="14" y1="15" x2="37" y2="37" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset=".55" stop-color="#aee9ff"/>
+      <stop offset="1" stop-color="#5ea9d0"/>
+    </linearGradient>
+    <linearGradient id="liquid" x1="15" y1="27" x2="33" y2="41" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#64f2cf"/>
+      <stop offset=".52" stop-color="#25d0c4"/>
+      <stop offset="1" stop-color="#1596cf"/>
+    </linearGradient>
+    <linearGradient id="neck" x1="18" y1="6" x2="30" y2="9" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset=".5" stop-color="#bdeaff"/>
+      <stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+    <radialGradient id="shine" cx="0" cy="0" r="1" gradientTransform="matrix(4 0 0 11 17 22)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="flask">
+      <path d="M18.5 8.5h11v10.1l9.1 15.8a4.9 4.9 0 0 1-4.2 7.4H13.6a4.9 4.9 0 0 1-4.2-7.4l9.1-15.8V8.5Z"/>
+    </clipPath>
+  </defs>
+  <ellipse cx="24" cy="42.2" rx="12.1" ry="1.4" fill="#071c38" opacity=".3"/>
+  <path d="M18.5 8.5h11v10.1l9.1 15.8a4.9 4.9 0 0 1-4.2 7.4H13.6a4.9 4.9 0 0 1-4.2-7.4l9.1-15.8V8.5Z" fill="url(#glass)" stroke="url(#glassEdge)" stroke-width="1.5"/>
+  <g clip-path="url(#flask)">
+    <path d="M13.2 30.3c3.3-1.6 5.1.7 8.1.7s4.4-2.3 7.5-2.3 4.6 1.8 7.6 2.4l4.5 9.7H8.5l4.7-10.5Z" fill="url(#liquid)"/>
+    <path d="M13 30.5c3.4-1.6 5.3.5 8.3.5s4.6-2.2 7.6-2.2 4.6 1.8 7.7 2.4" stroke="#c7fff4" stroke-linecap="round" stroke-width="1.1" opacity=".95"/>
+    <path d="M15.4 33.2c2-.7 3.4.5 5.5.5m5.2-1.1c2-.8 3.7-.6 5.3.1" stroke="#e8fff9" stroke-linecap="round" stroke-width=".7" opacity=".62"/>
+    <path d="M14 21h4v18h-4z" fill="url(#shine)" opacity=".8"/>
+    <circle cx="20.5" cy="27.1" r="1.15" fill="#fff" fill-opacity=".95"/>
+    <circle cx="23" cy="23.8" r=".78" fill="#fff" fill-opacity=".9"/>
+    <circle cx="29.6" cy="25.6" r="1.35" fill="#fff" fill-opacity=".88"/>
+    <circle cx="30" cy="25.2" r=".42" fill="#dffcff"/>
+    <circle cx="18.1" cy="32.1" r=".7" fill="#fff" fill-opacity=".76"/>
+  </g>
+  <path d="M18.5 8.5h11v10.1l9.1 15.8a4.9 4.9 0 0 1-4.2 7.4H13.6a4.9 4.9 0 0 1-4.2-7.4l9.1-15.8V8.5Z" stroke="#fff" stroke-opacity=".88" stroke-width=".65"/>
+  <path d="M18 7.2c0-.9.7-1.7 1.7-1.7h8.6c1 0 1.7.8 1.7 1.7v1.5H18V7.2Z" fill="url(#neck)" stroke="#fff" stroke-width=".85"/>
+  <path d="M19.5 11v6.9l-8.8 15.3a4 4 0 0 0-.4 3" stroke="#fff" stroke-linecap="round" stroke-width="1.1" opacity=".9"/>
+  <path d="M28.5 11v7.2l8.2 14.2" stroke="#4d9ac2" stroke-linecap="round" stroke-width=".65" opacity=".58"/>
+  <path d="M21 12v5" stroke="#fff" stroke-linecap="round" stroke-width=".8" opacity=".66"/>
+  <path d="m35.4 7.1 1 2.4 2.4 1-2.4 1-1 2.4-1-2.4-2.4-1 2.4-1 1-2.4Z" fill="#ffd45f" stroke="#fff1b7" stroke-linejoin="round" stroke-width=".7"/>
+  <circle cx="12.4" cy="15.1" r="1.05" fill="#70e5ed"/>
+  <circle cx="37.2" cy="20.2" r=".85" fill="#ff9b82"/>
+</svg>

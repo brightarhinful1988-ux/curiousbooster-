@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 500" role="img" aria-labelledby="title desc">
+  <title id="title">Example dichotomous key for four organisms</title>
+  <desc id="desc">A branching identification key first separates animals with a backbone from plants, then distinguishes fish, insects, maize, and fern by observable characteristics.</desc>
+  <rect width="1100" height="500" rx="28" fill="#f4f8f4"/>
+  <text x="550" y="48" text-anchor="middle" fill="#173b32" font-family="Arial,sans-serif" font-size="27" font-weight="700">FOLLOW PAIRED CHOICES TO IDENTIFY AN ORGANISM</text>
+  <g font-family="Arial,sans-serif" text-anchor="middle">
+    <rect x="370" y="78" width="360" height="62" rx="15" fill="#dcefe4" stroke="#8fb9a1" stroke-width="2"/>
+    <text x="550" y="104" fill="#173b32" font-size="16" font-weight="700">1a. Has a backbone</text>
+    <text x="550" y="126" fill="#526760" font-size="14">Go to 2</text>
+    <rect x="45" y="194" width="310" height="62" rx="15" fill="#dcefe4" stroke="#8fb9a1" stroke-width="2"/>
+    <text x="200" y="220" fill="#173b32" font-size="16" font-weight="700">1b. Has no backbone</text>
+    <text x="200" y="242" fill="#526760" font-size="14">Go to 3</text>
+    <path d="M430 141L240 190" fill="none" stroke="#668c78" stroke-width="4"/>
+    <path d="M670 141L835 190" fill="none" stroke="#668c78" stroke-width="4"/>
+    <rect x="745" y="194" width="310" height="62" rx="15" fill="#dcefe4" stroke="#8fb9a1" stroke-width="2"/>
+    <text x="900" y="220" fill="#173b32" font-size="16" font-weight="700">2a. Has fins and gills</text>
+    <text x="900" y="242" fill="#526760" font-size="14">Tilapia</text>
+    <rect x="45" y="325" width="310" height="62" rx="15" fill="#fff0ca" stroke="#d3b86c" stroke-width="2"/>
+    <text x="200" y="351" fill="#5f4b1b" font-size="16" font-weight="700">3a. Has six legs and an exoskeleton</text>
+    <text x="200" y="373" fill="#70613c" font-size="14">Grasshopper</text>
+    <rect x="745" y="325" width="310" height="62" rx="15" fill="#fff0ca" stroke="#d3b86c" stroke-width="2"/>
+    <text x="900" y="351" fill="#5f4b1b" font-size="16" font-weight="700">3b. Is a green plant</text>
+    <text x="900" y="373" fill="#70613c" font-size="14">Go to 4</text>
+    <path d="M200 257V320" fill="none" stroke="#668c78" stroke-width="4"/>
+    <path d="M900 257V320" fill="none" stroke="#668c78" stroke-width="4"/>
+    <rect x="395" y="414" width="270" height="58" rx="15" fill="#dce8f3" stroke="#89a8c2" stroke-width="2"/>
+    <text x="530" y="439" fill="#274964" font-size="15" font-weight="700">4a. Parallel leaf veins</text>
+    <text x="530" y="459" fill="#526b7b" font-size="14">Maize</text>
+    <rect x="695" y="414" width="320" height="58" rx="15" fill="#dce8f3" stroke="#89a8c2" stroke-width="2"/>
+    <text x="855" y="439" fill="#274964" font-size="15" font-weight="700">4b. Divided fronds, spores</text>
+    <text x="855" y="459" fill="#526b7b" font-size="14">Fern</text>
+    <path d="M820 389L600 410" fill="none" stroke="#668c78" stroke-width="4"/>
+    <path d="M980 389L910 410" fill="none" stroke="#668c78" stroke-width="4"/>
+  </g>
+</svg>

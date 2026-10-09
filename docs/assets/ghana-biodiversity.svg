@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 530" role="img" aria-labelledby="title desc">
+  <title id="title">Illustrated examples of Ghanaian habitats</title>
+  <desc id="desc">Forest, savannah, and coastal wetland panels show different habitats and organisms that contribute to biodiversity.</desc>
+  <rect width="1100" height="530" rx="28" fill="#f4f8f4"/>
+  <text x="550" y="50" text-anchor="middle" fill="#173b32" font-family="Arial,sans-serif" font-size="27" font-weight="700">BIODIVERSITY: DIFFERENT HABITATS, DIFFERENT COMMUNITIES</text>
+  <g font-family="Arial,sans-serif">
+    <rect x="35" y="82" width="330" height="400" rx="20" fill="#e0f0df"/>
+    <text x="200" y="119" text-anchor="middle" fill="#20533d" font-size="22" font-weight="700">FOREST</text>
+    <path d="M35 390 Q115 340 200 385 T365 370 V482 H35Z" fill="#7eae72"/>
+    <rect x="95" y="239" width="24" height="160" rx="8" fill="#76543b"/>
+    <circle cx="107" cy="218" r="65" fill="#448657"/>
+    <rect x="230" y="269" width="22" height="132" rx="8" fill="#76543b"/>
+    <circle cx="241" cy="245" r="54" fill="#579763"/>
+    <path d="M164 199q22-30 44 0q-22 22-44 0m20-4v19" fill="#e8b952" stroke="#755c27" stroke-width="3"/>
+    <text x="200" y="438" text-anchor="middle" fill="#254a35" font-size="16">Trees · birds · insects</text>
+    <text x="200" y="462" text-anchor="middle" fill="#254a35" font-size="14">Many layers and microhabitats</text>
+
+    <rect x="385" y="82" width="330" height="400" rx="20" fill="#f5edce"/>
+    <text x="550" y="119" text-anchor="middle" fill="#765c22" font-size="22" font-weight="700">SAVANNAH</text>
+    <circle cx="633" cy="183" r="34" fill="#f1c75f"/>
+    <path d="M385 378 Q478 330 560 380 T715 360 V482 H385Z" fill="#d4bc68"/>
+    <path d="M444 385v-133m0 53-24-31m24 58 24-35m-24 61-28-30m28 54 22-29" stroke="#667b3d" stroke-width="11" stroke-linecap="round"/>
+    <path d="M577 377v-137m0 47-27-32m27 61 29-35m-29 64-27-31m27 55 28-28" stroke="#758744" stroke-width="12" stroke-linecap="round"/>
+    <path d="M482 365q30-24 59 0l-5 27h-50zm52-12 19-18 9 5-13 21m-55-4-8 31m50-31 7 31" fill="#b77b42" stroke="#704d2b" stroke-width="4" stroke-linejoin="round"/>
+    <circle cx="536" cy="350" r="3" fill="#172d2a"/>
+    <text x="550" y="438" text-anchor="middle" fill="#655426" font-size="16">Grasses · shrubs · grazers</text>
+    <text x="550" y="462" text-anchor="middle" fill="#655426" font-size="14">Seasonal rainfall shapes life</text>
+
+    <rect x="735" y="82" width="330" height="400" rx="20" fill="#dff0f1"/>
+    <text x="900" y="119" text-anchor="middle" fill="#28616a" font-size="22" font-weight="700">COASTAL WETLAND</text>
+    <path d="M735 340 Q820 302 900 342 T1065 323 V482 H735Z" fill="#6bb8bd"/>
+    <path d="M735 390 Q815 362 900 392 T1065 374" fill="none" stroke="#eaf7ee" stroke-width="9"/>
+    <path d="M800 352v-96m0 38-34-30m34 53 34-32m-34 60-33-25" stroke="#4d8062" stroke-width="12" stroke-linecap="round"/>
+    <path d="M915 352v-105m0 38-33-30m33 53 34-33m-34 64-32-27" stroke="#4d8062" stroke-width="12" stroke-linecap="round"/>
+    <path d="M973 291q28-20 54 0q-26 21-54 0m53 0 16-12v24z" fill="#e5a853"/>
+    <circle cx="984" cy="288" r="3" fill="#173b32"/>
+    <text x="900" y="438" text-anchor="middle" fill="#24555c" font-size="16">Mangroves · fish · crabs</text>
+    <text x="900" y="462" text-anchor="middle" fill="#24555c" font-size="14">Nursery and shoreline habitat</text>
+  </g>
+</svg>
