@@ -5,7 +5,7 @@ const path = require("node:path");
 const test = require("node:test");
 const { createApp, validateProductionConfig, verifyAndFulfill } = require("../server");
 
-test("production config requires HTTPS and an absolute persistent database path", () => {
+test("production config requires HTTPS and an absolute database path", () => {
   assert.throws(
     () => validateProductionConfig({
       NODE_ENV: "production",
@@ -40,7 +40,7 @@ test("production config requires HTTPS and an absolute persistent database path"
   assert.doesNotThrow(() => validateProductionConfig({
     NODE_ENV: "production",
     RENDER_EXTERNAL_URL: "https://curiousbooster.onrender.com",
-    DATABASE_PATH: "/var/data/curiousbooster.sqlite"
+    DATABASE_PATH: "/tmp/curiousbooster.sqlite"
   }));
 });
 

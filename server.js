@@ -185,7 +185,7 @@ function validateProductionConfig(environment = process.env) {
   }
 
   if (!environment.DATABASE_PATH || !path.isAbsolute(environment.DATABASE_PATH)) {
-    throw new Error("Set DATABASE_PATH to an absolute path on persistent storage before production startup.");
+    throw new Error("Set DATABASE_PATH to an absolute path before production startup.");
   }
 
   if ((environment.PAYSTACK_SECRET_KEY || "").startsWith("sk_live_")) {

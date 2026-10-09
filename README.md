@@ -26,18 +26,17 @@ After the first online visit, the service worker can load the app's static page 
 
 The `/api/health` endpoint provides a minimal database-backed health check for a hosting platform.
 
-## Deploy publicly on Render
+## Free Render demo deployment
 
-The repository includes a Render Blueprint in `render.yaml`. It configures a Node web service, HTTPS origin detection, a `/api/health` check, and a 1 GB persistent disk for SQLite. The service uses Render's paid `starter` plan because free services do not support persistent disks. A disk-backed SQLite service runs as one instance; do not scale it horizontally.
+The repository includes a Render Blueprint in `render.yaml` for a free Node web service. It uses `/tmp/curiousbooster.sqlite` for SQLite, but Render's free web service has an ephemeral filesystem. **All account, session, credit, payment, and lesson-unlock records can be erased whenever the service spins down, restarts, or redeploys. Do not use real learner information or treat demo accounts as durable.** Render also spins down an idle free service after 15 minutes; waking it can take about a minute. Free services have usage limits and are not recommended for production.
 
 1. Put this project in a GitHub repository. Do not upload `.env`, `data/`, or `node_modules/`.
-2. In Render, choose **New → Blueprint**, connect the repository, and review the service and disk charges before applying the Blueprint.
+2. In Render, choose **New → Blueprint**, select the repository, and review the configuration. It must use the `free` plan and must not create a persistent disk or paid resources.
 3. Wait for the deploy to become healthy at the `*.onrender.com` address Render assigns. The app uses `RENDER_EXTERNAL_URL` for its public origin and secure sign-in cookies.
 4. Keep the Paystack secret unset. Payments stay disabled; the GHS package prices are demonstrations, not prices to charge.
-5. Test account creation, sign-in, a lesson unlock, and a restart/redeploy to confirm the persistent disk retains the data. Do this only with test accounts.
-6. Before inviting real learners, complete the launch requirements listed below. Add a custom domain only after you control it, and set `APP_BASE_URL` to its HTTPS origin in Render.
+5. Use only test accounts and sample information. Do not invite real learners to this demo.
 
-The hosting account, verified source repository, and final public URL are controlled through Render and GitHub. This project does not contain hosting credentials, and deploying the Blueprint is not the same as publishing the service.
+To preserve accounts between restarts, replace this demo setup with a persistent database and appropriate hosting before launch. The hosting account, verified source repository, and final public URL are controlled through Render and GitHub. This project does not contain hosting credentials, and deploying the Blueprint is not the same as publishing the service.
 
 ## Paystack test checkout
 
