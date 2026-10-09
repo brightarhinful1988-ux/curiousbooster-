@@ -66,20 +66,38 @@ self.addEventListener("fetch", (event) => {
   }
 
   if (request.mode === "navigate") {
-    event.respondWith(
-      fetch(request)
-        .then((response) => {
-          if (response.ok && PAGE_PATHS.has(requestUrl.pathname)) {
-            const responseCopy = response.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(request, responseCopy));
-          }
-          return response;
-        })
-        .catch(async () => {
-          const cachedPage = await caches.match(request, { ignoreSearch: true });
-          return cachedPage || caches.match(appUrl("index.html"));
-        })
-    );
+    event.respondWith((async () => {
+      const cachedPage = await caches.match(request, { ignoreSearch: true });
+      if (cachedPage) {
+        if (PAGE_PATHS.has(requestUrl.pathname)) {
+          event.waitUntil(
+            fetch(request)
+              .then(async (response) => {
+                if (response.ok) {
+                  const cache = await caches.open(CACHE_NAME);
+                  await cache.put(request, response.clone());
+                }
+              })
+              .catch((error) => {
+                console.warn("Could not refresh the cached app page.", error);
+              })
+          );
+        }
+        return cachedPage;
+      }
+
+      try {
+        const response = await fetch(request);
+        if (response.ok && PAGE_PATHS.has(requestUrl.pathname)) {
+          const cache = await caches.open(CACHE_NAME);
+          await cache.put(request, response.clone());
+        }
+        return response;
+      } catch (error) {
+        console.warn("Could not load the app page from the network.", error);
+        return await caches.match(appUrl("index.html"));
+      }
+    })());
     return;
   }
 

@@ -10,17 +10,26 @@ if ("serviceWorker" in navigator) {
 const installButton = document.querySelector("#install-app-button");
 const installHelp = document.querySelector("#install-app-help");
 const isPublicDemo = document.documentElement.dataset.publicDemo === "true";
+const standaloneDisplay = window.matchMedia("(display-mode: standalone)");
+const isInstalled = () => standaloneDisplay.matches || navigator.standalone === true;
 let installPrompt;
 
 if (installButton) {
-  if (isPublicDemo) {
-    installButton.hidden = false;
-  }
+  installButton.hidden = isInstalled() ? true : !isPublicDemo;
+
+  standaloneDisplay.addEventListener?.("change", (event) => {
+    if (event.matches) {
+      installButton.hidden = true;
+      if (installHelp) {
+        installHelp.hidden = true;
+      }
+    }
+  });
 
   window.addEventListener("beforeinstallprompt", (event) => {
     event.preventDefault();
     installPrompt = event;
-    installButton.hidden = false;
+    installButton.hidden = isInstalled();
   });
 
   installButton.addEventListener("click", async () => {
