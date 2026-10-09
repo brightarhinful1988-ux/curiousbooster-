@@ -4,6 +4,7 @@ const fs = require("node:fs");
 const os = require("node:os");
 const path = require("node:path");
 const test = require("node:test");
+const vm = require("node:vm");
 
 const APP_DIRECTORY = path.join(__dirname, "..");
 
@@ -32,4 +33,20 @@ test("public demo build includes all lessons without account features", (context
   assert.ok(fs.existsSync(path.join(temporaryDirectory, "lesson.html")));
   assert.ok(fs.existsSync(path.join(temporaryDirectory, "quiz.html")));
   assert.ok(fs.existsSync(path.join(temporaryDirectory, "assets", "curiousbooster-icon.svg")));
+
+  const quizSource = fs.readFileSync(path.join(temporaryDirectory, "quiz-page.js"), "utf8");
+  const questionBank = quizSource.match(/const challengeQuestions = (\[[\s\S]*?\n\]);/);
+  assert.ok(questionBank, "the 30-level question bank should be present");
+  const questions = vm.runInNewContext(`(${questionBank[1]})`);
+  assert.equal(questions.length, 30);
+  assert.ok(questions.every((question) =>
+    typeof question.subject === "string" &&
+    typeof question.question === "string" &&
+    question.options.length === 4 &&
+    Number.isInteger(question.answer) &&
+    question.answer >= 0 &&
+    question.answer < question.options.length &&
+    typeof question.explanation === "string"
+  ));
+  assert.match(quizSource, /level <= 10 \? "Foundation" : level <= 20 \? "Application" : "Challenge"/);
 });
