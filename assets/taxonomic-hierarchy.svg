@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 590" role="img" aria-labelledby="title desc">
+  <title id="title">Nested biological classification ranks</title>
+  <desc id="desc">A narrowing stack from domain to species with a human example at each rank.</desc>
+  <rect width="1100" height="590" rx="28" fill="#f4f8f4"/>
+  <text x="550" y="55" text-anchor="middle" fill="#173b32" font-family="Arial,sans-serif" font-size="27" font-weight="700">CLASSIFICATION: BROAD GROUPS TO SPECIFIC SPECIES</text>
+  <g font-family="Arial,sans-serif" text-anchor="middle">
+    <rect x="110" y="91" width="880" height="53" rx="13" fill="#dcefe4"/>
+    <text x="550" y="125" fill="#173b32" font-size="18" font-weight="700">DOMAIN EUKARYA · cells with a nucleus</text>
+    <rect x="155" y="154" width="790" height="49" rx="12" fill="#c9e7d5"/>
+    <text x="550" y="184" fill="#173b32" font-size="17" font-weight="700">KINGDOM ANIMALIA · multicellular animals</text>
+    <rect x="200" y="213" width="700" height="47" rx="12" fill="#b3dcc4"/>
+    <text x="550" y="242" fill="#173b32" font-size="16" font-weight="700">PHYLUM CHORDATA · chordate features</text>
+    <rect x="245" y="270" width="610" height="45" rx="11" fill="#f5dfa0"/>
+    <text x="550" y="298" fill="#564719" font-size="16" font-weight="700">CLASS MAMMALIA · hair and mammary glands</text>
+    <rect x="290" y="325" width="520" height="43" rx="11" fill="#f1d17e"/>
+    <text x="550" y="352" fill="#564719" font-size="15" font-weight="700">ORDER PRIMATES</text>
+    <rect x="335" y="378" width="430" height="41" rx="10" fill="#eabf5e"/>
+    <text x="550" y="404" fill="#443617" font-size="15" font-weight="700">FAMILY HOMINIDAE</text>
+    <rect x="380" y="429" width="340" height="39" rx="10" fill="#a6c9e8"/>
+    <text x="550" y="454" fill="#173852" font-size="15" font-weight="700">GENUS HOMO</text>
+    <rect x="425" y="478" width="250" height="42" rx="11" fill="#668db1"/>
+    <text x="550" y="505" fill="#fff" font-size="17" font-weight="700">SPECIES HOMO SAPIENS</text>
+    <text x="550" y="557" fill="#526760" font-size="14">Each step downward contains a narrower group with more shared characteristics.</text>
+  </g>
+</svg>

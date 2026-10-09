@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Explore major high school science fields with lessons and quick quizzes for grades 9–12."
+    />
+    <title>CURIOUSBOOSTER — Learn Science</title>
+    <link rel="icon" type="image/svg+xml" href="assets/curiousbooster-icon.svg?v=10" />
+    <link rel="apple-touch-icon" href="assets/curiousbooster-icon.svg?v=10" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="pwa.js" defer></script>
+    <script src="credits.js" defer></script>
+    <script src="app-client.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="CURIOUSBOOSTER home">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="assets/curiousbooster-science-logo.svg?v=2" alt="" />
+        </span>
+        <span>CURIOUSBOOSTER</span>
+      </a>
+      <div class="topbar-actions">
+        <span class="topbar-credit-balance" id="topbar-credit-balance" role="status" aria-live="polite">
+          <svg class="credit-icon" aria-hidden="true" viewBox="0 0 28 28">
+            <defs>
+              <linearGradient id="coin-face-balance" x1="4" y1="4" x2="23" y2="24" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#fff4a8"></stop>
+                <stop offset=".38" stop-color="#ffc83d"></stop>
+                <stop offset=".72" stop-color="#f49a18"></stop>
+                <stop offset="1" stop-color="#d66a0b"></stop>
+              </linearGradient>
+              <linearGradient id="coin-edge-balance" x1="3" y1="5" x2="25" y2="24" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#f9cf68"></stop>
+                <stop offset=".5" stop-color="#b96813"></stop>
+                <stop offset="1" stop-color="#8f470d"></stop>
+              </linearGradient>
+            </defs>
+            <ellipse cx="14" cy="24.2" rx="8.3" ry="1.7" fill="#653d1d" opacity=".18"></ellipse>
+            <circle cx="14" cy="13" r="11.2" fill="url(#coin-edge-balance)"></circle>
+            <circle cx="14" cy="12.2" r="9.2" fill="url(#coin-face-balance)" stroke="#fff0a0" stroke-width=".7"></circle>
+            <circle cx="14" cy="12.2" r="7.7" fill="none" stroke="#c87913" stroke-opacity=".62" stroke-width=".7"></circle>
+            <path d="M8.2 8.4a7.3 7.3 0 0 1 9.7-2.2" fill="none" stroke="#fffbe2" stroke-linecap="round" stroke-width="1.2" opacity=".88"></path>
+            <path d="M14.9 7.4v9.5m2.4-7.6c-.6-.7-1.5-1-2.7-1-1.4 0-2.4.7-2.4 1.8 0 2.7 5.1 1.1 5.1 3.9 0 1.2-1.1 2-2.8 2-1.2 0-2.2-.4-2.9-1.2" fill="none" stroke="#81430b" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.35"></path>
+            <path d="m21.3 5.1.5 1.2 1.2.5-1.2.5-.5 1.2-.5-1.2-1.2-.5 1.2-.5z" fill="#fff8d0"></path>
+          </svg>
+          <span id="topbar-credit-balance-label">Credits: sign in</span>
+        </span>
+        <a class="topbar-credit-link" id="topbar-credit-link" href="#account-panel">
+          <span>My account</span><span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <section class="welcome">
+        <p class="eyebrow">HIGH SCHOOL SCIENCE</p>
+        <h1>Think deeper.<br />Stay <span>curious.</span></h1>
+        <p class="welcome-copy">
+          Explore the major branches of science through focused lessons,
+          real-world connections, and quick checks.
+        </p>
+        <button class="secondary-button install-app-button" id="install-app-button" type="button" hidden>
+          Install CURIOUSBOOSTER
+        </button>
+      </section>
+
+      <section class="account-panel" id="account-panel" aria-labelledby="account-heading">
+        <div class="account-panel-heading">
+          <div>
+            <p class="eyebrow">YOUR LEARNING CREDITS</p>
+            <h2 id="account-heading">One credit unlocks one lesson</h2>
+          </div>
+          <p class="account-credit-balance" id="account-credit-balance">Sign in to view credits</p>
+        </div>
+        <p class="account-credit-explainer">
+          Unlocked lessons are yours to revisit. Quizzes and repeat visits do not use another credit.
+        </p>
+        <div id="auth-view">
+          <form class="account-form" id="auth-form">
+            <label>
+              Email
+              <input id="account-email" name="email" type="email" autocomplete="email" required maxlength="254" />
+            </label>
+            <label>
+              Password
+              <input id="account-password" name="password" type="password" autocomplete="current-password" minlength="10" required maxlength="200" />
+              <span class="field-hint">Use at least 10 characters.</span>
+            </label>
+            <div class="account-form-actions">
+              <button class="read-lesson-button account-action" type="submit" value="login">Sign in</button>
+              <button class="secondary-button account-action" type="submit" value="register">Create account</button>
+            </div>
+          </form>
+        </div>
+        <div id="signed-in-view" hidden>
+          <div class="signed-in-row">
+            <p>Signed in as <strong id="account-email-label"></strong></p>
+            <button class="secondary-button" id="sign-out-button" type="button">Sign out</button>
+          </div>
+          <div class="credit-packages">
+            <h3>Get more lesson credits</h3>
+            <p class="package-note">
+              Provisional demonstration prices in Ghana cedis. Checkout works only with a Paystack test key; no real payment is taken.
+            </p>
+            <div class="package-list" id="package-list"></div>
+          </div>
+        </div>
+        <p class="account-status" id="account-status" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="branch-section" aria-labelledby="branch-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">EXPLORE THE SCIENCES</p>
+            <h2 id="branch-heading">Choose a branch of science</h2>
+          </div>
+          <p class="level-hint">Every subject is grouped by SHS year in a suggested learning sequence.</p>
+        </div>
+        <div class="branch-picker" id="branch-picker" role="group" aria-label="Science branches"></div>
+      </section>
+
+      <section class="learning-layout" aria-label="Science lessons" hidden>
+        <aside class="lesson-panel" aria-labelledby="lesson-list-heading">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">YOUR LEARNING PATH</p>
+              <h2 id="lesson-list-heading">Lessons</h2>
+            </div>
+            <span class="lesson-count" id="lesson-count"></span>
+          </div>
+          <div class="progress-wrap">
+            <div class="progress-label">
+              <span>Your progress</span>
+              <span id="progress-text">0 of 0 done</span>
+            </div>
+            <div
+              class="progress-track"
+              id="progress-track"
+              role="progressbar"
+              aria-label="Lessons completed"
+              aria-valuemin="0"
+              aria-valuemax="0"
+              aria-valuenow="0"
+            >
+              <span id="progress-fill"></span>
+            </div>
+          </div>
+          <nav class="lesson-list" id="lesson-list" aria-label="Choose a science lesson"></nav>
+        </aside>
+
+        <article class="lesson-content" id="lesson-content" aria-live="polite"></article>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Stay curious. Keep asking why.</span>
+      <span>Made for high school learners <span aria-hidden="true">✳</span></span>
+    </footer>
+  </body>
+</html>

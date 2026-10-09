@@ -1,0 +1,21 @@
+{
+  "id": "/",
+  "name": "CURIOUSBOOSTER — Learn Science",
+  "short_name": "CURIOUSBOOSTER",
+  "description": "Explore high school science through lessons, quizzes, and real-world connections.",
+  "lang": "en",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#163653",
+  "background_color": "#f5f7fb",
+  "icons": [
+    {
+      "src": "/assets/curiousbooster-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

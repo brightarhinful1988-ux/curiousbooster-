@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Confirm payment — CURIOUSBOOSTER</title>
+    <link rel="icon" type="image/svg+xml" href="assets/curiousbooster-icon.svg?v=10" />
+    <link rel="apple-touch-icon" href="assets/curiousbooster-icon.svg?v=10" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="pwa.js" defer></script>
+    <script src="payment-return.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="CURIOUSBOOSTER home">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="assets/curiousbooster-science-logo.svg?v=2" alt="" />
+        </span>
+        <span>CURIOUSBOOSTER</span>
+      </a>
+    </header>
+    <main class="reader-shell">
+      <article class="reader-card payment-result-card" aria-live="polite">
+        <p class="eyebrow">PAYMENT STATUS</p>
+        <h1 class="reader-title" id="payment-heading">Checking your payment</h1>
+        <p class="reader-intro" id="payment-message" role="status">Please wait while the server confirms your transaction with Paystack.</p>
+        <a class="read-lesson-button" href="index.html">Return to CURIOUSBOOSTER</a>
+      </article>
+    </main>
+    <footer class="footer">
+      <span>Your credits are added only after the payment is verified.</span>
+      <span>CURIOUSBOOSTER ✳</span>
+    </footer>
+  </body>
+</html>
