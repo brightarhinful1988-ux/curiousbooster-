@@ -13,7 +13,8 @@ const STATIC_FILES = [
   "credits.js",
   "lesson-page.js",
   "quiz-page.js",
-  "pwa.js"
+  "pwa.js",
+  "service-worker.js"
 ];
 
 function loadCurriculum() {
@@ -63,6 +64,32 @@ function buildPublicDemo(outputDirectory) {
     path.join(APP_DIRECTORY, "manifest.webmanifest"),
     path.join(outputDirectory, "manifest.webmanifest")
   );
+  const manifestPath = path.join(outputDirectory, "manifest.webmanifest");
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+  manifest.start_url = "./";
+  manifest.scope = "./";
+  manifest.id = "./";
+  manifest.icons = manifest.icons.map((icon) => ({
+    ...icon,
+    src: icon.src.replace(/^\//, "./")
+  }));
+  fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
+
+  const serviceWorkerPath = path.join(outputDirectory, "service-worker.js");
+  const serviceWorker = fs.readFileSync(serviceWorkerPath, "utf8")
+    .replace(
+      'const SERVER_ONLY_FILES = ["payment-return.html", "payment-return.js"];',
+      "const SERVER_ONLY_FILES = [];"
+    )
+    .replace("const DEMO_ONLY_FILES = [];", 'const DEMO_ONLY_FILES = ["curriculum.json"];');
+  if (
+    serviceWorker === fs.readFileSync(path.join(APP_DIRECTORY, "service-worker.js"), "utf8") ||
+    serviceWorker.includes('const SERVER_ONLY_FILES = ["payment-return.html", "payment-return.js"];') ||
+    serviceWorker.includes("const DEMO_ONLY_FILES = [];")
+  ) {
+    throw new Error("Could not configure the public app's offline shell.");
+  }
+  fs.writeFileSync(serviceWorkerPath, serviceWorker);
   fs.cpSync(
     path.join(APP_DIRECTORY, "assets"),
     path.join(outputDirectory, "assets"),

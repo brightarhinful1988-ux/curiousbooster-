@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#163653"/>
+  <path d="M0 0h512v18H0z" fill="#f1bd55"/>
+  <text x="256" y="108" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="800" letter-spacing="3" text-anchor="middle">AMBITIOUS</text>
+  <g fill="none" stroke-linecap="round">
+    <ellipse cx="256" cy="302" rx="168" ry="63" stroke="#f1bd55" stroke-width="12" transform="rotate(-35 256 302)"/>
+    <ellipse cx="256" cy="302" rx="168" ry="63" stroke="#70dce8" stroke-width="12" transform="rotate(35 256 302)"/>
+    <ellipse cx="256" cy="302" rx="168" ry="63" stroke="#fff" stroke-width="10"/>
+  </g>
+  <circle cx="256" cy="302" r="25" fill="#f1bd55" stroke="#fff" stroke-width="8"/>
+  <circle cx="112" cy="201" r="13" fill="#70dce8" stroke="#fff" stroke-width="5"/>
+  <circle cx="385" cy="203" r="13" fill="#f1bd55" stroke="#fff" stroke-width="5"/>
+  <circle cx="294" cy="461" r="13" fill="#70dce8" stroke="#fff" stroke-width="5"/>
+</svg>

@@ -22,8 +22,8 @@ const APP_SHELL = [
   "assets/icon-photo-fire.jpg",
   "assets/icon-photo-water-splash.jpg"
 ];
-const SERVER_ONLY_FILES = ["payment-return.html", "payment-return.js"];
-const DEMO_ONLY_FILES = [];
+const SERVER_ONLY_FILES = [];
+const DEMO_ONLY_FILES = ["curriculum.json"];
 const APP_SHELL_URLS = [...APP_SHELL, ...SERVER_ONLY_FILES, ...DEMO_ONLY_FILES].map(appUrl);
 const PAGE_PATHS = new Set([
   APP_BASE_PATH,

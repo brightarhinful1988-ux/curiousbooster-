@@ -87,7 +87,7 @@ test("accounts, credit purchases, and protected lesson unlocks", async (context)
   const serviceWorkerResponse = await fetch(`${baseUrl}/service-worker.js`);
   assert.equal(serviceWorkerResponse.status, 200);
   assert.equal(serviceWorkerResponse.headers.get("service-worker-allowed"), "/");
-  assert.match(await serviceWorkerResponse.text(), /requestUrl\.pathname\.startsWith\("\/api\/"\)/);
+  assert.match(await serviceWorkerResponse.text(), /requestUrl\.pathname\.startsWith\(API_PATH\)/);
 
   const homeResponse = await fetch(`${baseUrl}/`);
   const homeHtml = await homeResponse.text();

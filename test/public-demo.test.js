@@ -32,7 +32,23 @@ test("public demo build includes all lessons without account features", (context
   assert.ok(lessons.some((lesson) => lesson.learningNotes));
   assert.ok(fs.existsSync(path.join(temporaryDirectory, "lesson.html")));
   assert.ok(fs.existsSync(path.join(temporaryDirectory, "quiz.html")));
-  assert.ok(fs.existsSync(path.join(temporaryDirectory, "assets", "curiousbooster-icon.svg")));
+  assert.ok(fs.existsSync(path.join(temporaryDirectory, "service-worker.js")));
+  assert.ok(fs.existsSync(path.join(temporaryDirectory, "assets", "ambitious-science-icon.svg")));
+  const manifest = JSON.parse(
+    fs.readFileSync(path.join(temporaryDirectory, "manifest.webmanifest"), "utf8")
+  );
+  assert.equal(manifest.id, "./");
+  assert.equal(manifest.start_url, "./");
+  assert.equal(manifest.scope, "./");
+  assert.ok(manifest.icons.every((icon) => !icon.src.startsWith("/")));
+  assert.ok(manifest.icons.some((icon) => icon.sizes === "192x192"));
+  assert.ok(manifest.icons.some((icon) => icon.sizes === "512x512"));
+  for (const size of [180, 192, 512]) {
+    assert.ok(fs.existsSync(path.join(temporaryDirectory, "assets", `ambitious-science-icon-${size}.png`)));
+  }
+  const serviceWorker = fs.readFileSync(path.join(temporaryDirectory, "service-worker.js"), "utf8");
+  assert.match(serviceWorker, /SERVER_ONLY_FILES = \[\]/);
+  assert.match(serviceWorker, /DEMO_ONLY_FILES = \["curriculum\.json"\]/);
 
   const quizSource = fs.readFileSync(path.join(temporaryDirectory, "quiz-page.js"), "utf8");
   const questionBank = quizSource.match(/const challengeQuestions = (\[[\s\S]*?\n\]);/);

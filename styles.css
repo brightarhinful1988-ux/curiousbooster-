@@ -253,6 +253,22 @@ a:focus-visible {
   display: none;
 }
 
+.install-app-help {
+  max-width: 590px;
+  margin: 12px 0 0;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgb(255 255 255 / 82%);
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.install-app-help strong {
+  color: var(--ink);
+}
+
 .secondary-button {
   min-height: 40px;
   padding: 0 14px;
