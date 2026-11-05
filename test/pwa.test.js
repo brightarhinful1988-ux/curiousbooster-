@@ -127,6 +127,49 @@ test("install button is available outside standalone mode and hides after instal
   assert.equal(regularAppHelp.hidden, false);
   windowListeners.get("appinstalled")();
   assert.equal(regularAppWindow.location.href, "https://curiousbooster.test/");
+
+  const promptWindowListeners = new Map();
+  const promptButtonListeners = new Map();
+  const promptWindow = {
+    location: { href: "https://curiousbooster.test/" },
+    addEventListener: (name, listener) => promptWindowListeners.set(name, listener),
+    matchMedia: () => ({ matches: false })
+  };
+  const promptButton = {
+    hidden: true,
+    disabled: false,
+    addEventListener: (name, listener) => promptButtonListeners.set(name, listener)
+  };
+  const promptHelp = { hidden: true };
+  const promptDocument = {
+    documentElement: { dataset: { publicDemo: "true" } },
+    querySelector: (selector) => selector === "#install-app-button" ? promptButton : promptHelp
+  };
+  vm.runInNewContext(script, {
+    window: promptWindow,
+    navigator,
+    document: promptDocument,
+    URL,
+    console
+  });
+  let promptWasShown = false;
+  promptWindowListeners.get("beforeinstallprompt")({
+    preventDefault: () => {},
+    prompt: async () => { promptWasShown = true; },
+    userChoice: Promise.resolve({ outcome: "accepted" })
+  });
+  await promptButtonListeners.get("click")();
+  assert.equal(promptWasShown, true);
+  assert.equal(promptButton.hidden, true);
+  assert.equal(
+    promptWindow.location.href,
+    "https://docs.google.com/forms/d/e/1FAIpQLSfNk6Mc9DG4WV4Y8wLnEANXO6Ny8EBt9bycGQk_Jo_BgVz9EQ/viewform?usp=header"
+  );
+  promptWindowListeners.get("appinstalled")();
+  assert.equal(
+    promptWindow.location.href,
+    "https://docs.google.com/forms/d/e/1FAIpQLSfNk6Mc9DG4WV4Y8wLnEANXO6Ny8EBt9bycGQk_Jo_BgVz9EQ/viewform?usp=header"
+  );
 });
 
 test("service worker caches the static shell but leaves API requests online-only", async () => {

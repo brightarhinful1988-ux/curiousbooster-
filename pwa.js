@@ -15,9 +15,24 @@ const installationReportUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfNk6Mc9
 const standaloneDisplay = window.matchMedia("(display-mode: standalone)");
 const isInstalled = () => standaloneDisplay.matches || navigator.standalone === true;
 let installPrompt;
+let installationHandled = false;
 
 if (installReportNote) {
   installReportNote.hidden = !isPublicDemo;
+}
+
+function handleAppInstalled() {
+  installPrompt = null;
+  if (installButton) {
+    installButton.hidden = true;
+  }
+  if (installHelp) {
+    installHelp.hidden = true;
+  }
+  if (isPublicDemo && !installationHandled) {
+    installationHandled = true;
+    window.location.href = installationReportUrl;
+  }
 }
 
 if (installButton) {
@@ -51,7 +66,7 @@ if (installButton) {
       const choice = await installPrompt.userChoice;
       installPrompt = null;
       if (choice.outcome === "accepted") {
-        installButton.hidden = true;
+        handleAppInstalled();
       } else if (installHelp) {
         installHelp.hidden = false;
       }
@@ -66,14 +81,5 @@ if (installButton) {
     }
   });
 
-  window.addEventListener("appinstalled", () => {
-    installPrompt = null;
-    installButton.hidden = true;
-    if (installHelp) {
-      installHelp.hidden = true;
-    }
-    if (isPublicDemo) {
-      window.location.href = installationReportUrl;
-    }
-  });
+  window.addEventListener("appinstalled", handleAppInstalled);
 }
