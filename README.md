@@ -22,6 +22,8 @@ Learners register with an email address and a password of at least 10 characters
 
 CURIOUSBOOSTER can be installed as a progressive web app (PWA) from a supported browser; this is a website install, not a packaged Play Store or App Store app. On localhost, open the browser's install option (or use the in-page install button when the browser offers it). A public installation requires HTTPS.
 
+On the public demo, the installation report form opens after the browser confirms a successful install. The form still needs to be completed manually.
+
 After the first online visit, the service worker can load the app's static page shell and bundled icon photos offline. Sign-in, credit balances, the lesson catalogue, protected lesson content, unlocks, and checkout still require the server and an internet connection. Account data and API responses are deliberately not cached on the device.
 
 The `/api/health` endpoint provides a minimal database-backed health check for a hosting platform.

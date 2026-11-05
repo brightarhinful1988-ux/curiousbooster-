@@ -39,20 +39,21 @@ test("install button hides after installation and in standalone app mode", () =>
   const windowListeners = new Map();
   const buttonListeners = new Map();
   const displayModeListeners = new Map();
+  const displayMode = {
+    matches: false,
+    addEventListener: (name, listener) => displayModeListeners.set(name, listener)
+  };
+  const window = {
+    location: { href: "https://curiousbooster.test/" },
+    addEventListener: (name, listener) => windowListeners.set(name, listener),
+    matchMedia: () => displayMode
+  };
   const button = {
     hidden: true,
     disabled: false,
     addEventListener: (name, listener) => buttonListeners.set(name, listener)
   };
   const help = { hidden: true };
-  const displayMode = {
-    matches: false,
-    addEventListener: (name, listener) => displayModeListeners.set(name, listener)
-  };
-  const window = {
-    addEventListener: (name, listener) => windowListeners.set(name, listener),
-    matchMedia: () => displayMode
-  };
   const navigator = {};
   const document = {
     documentElement: { dataset: { publicDemo: "true" } },
@@ -61,9 +62,14 @@ test("install button hides after installation and in standalone app mode", () =>
 
   vm.runInNewContext(script, { window, navigator, document, URL, console });
   assert.equal(button.hidden, false);
+  assert.equal(window.location.href, "https://curiousbooster.test/");
   windowListeners.get("appinstalled")();
   assert.equal(button.hidden, true);
   assert.equal(help.hidden, true);
+  assert.equal(
+    window.location.href,
+    "https://docs.google.com/forms/d/e/1FAIpQLSfNk6Mc9DG4WV4Y8wLnEANXO6Ny8EBt9bycGQk_Jo_BgVz9EQ/viewform?usp=header"
+  );
 
   button.hidden = false;
   displayMode.matches = true;
@@ -84,6 +90,25 @@ test("install button hides after installation and in standalone app mode", () =>
     console
   });
   assert.equal(standaloneButton.hidden, true);
+
+  const regularAppWindow = {
+    location: { href: "https://curiousbooster.test/" },
+    addEventListener: (name, listener) => windowListeners.set(name, listener),
+    matchMedia: () => ({ matches: false })
+  };
+  const regularAppDocument = {
+    ...document,
+    documentElement: { dataset: { publicDemo: "false" } }
+  };
+  vm.runInNewContext(script, {
+    window: regularAppWindow,
+    navigator,
+    document: regularAppDocument,
+    URL,
+    console
+  });
+  windowListeners.get("appinstalled")();
+  assert.equal(regularAppWindow.location.href, "https://curiousbooster.test/");
 });
 
 test("service worker caches the static shell but leaves API requests online-only", async () => {

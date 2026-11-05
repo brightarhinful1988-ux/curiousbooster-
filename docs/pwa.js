@@ -10,6 +10,7 @@ if ("serviceWorker" in navigator) {
 const installButton = document.querySelector("#install-app-button");
 const installHelp = document.querySelector("#install-app-help");
 const isPublicDemo = document.documentElement.dataset.publicDemo === "true";
+const installationReportUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfNk6Mc9DG4WV4Y8wLnEANXO6Ny8EBt9bycGQk_Jo_BgVz9EQ/viewform?usp=header";
 const standaloneDisplay = window.matchMedia("(display-mode: standalone)");
 const isInstalled = () => standaloneDisplay.matches || navigator.standalone === true;
 let installPrompt;
@@ -65,6 +66,9 @@ if (installButton) {
     installButton.hidden = true;
     if (installHelp) {
       installHelp.hidden = true;
+    }
+    if (isPublicDemo) {
+      window.location.href = installationReportUrl;
     }
   });
 }
