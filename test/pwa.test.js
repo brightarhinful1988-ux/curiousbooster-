@@ -34,7 +34,7 @@ test("web manifest describes an installable CURIOUSBOOSTER app", () => {
   assert.match(fs.readFileSync(path.join(APP_DIRECTORY, "index.html"), "utf8"), /install-app-help/);
 });
 
-test("install button hides after installation and in standalone app mode", () => {
+test("install button is available outside standalone mode and hides after installation", async () => {
   const script = fs.readFileSync(path.join(APP_DIRECTORY, "pwa.js"), "utf8");
   const windowListeners = new Map();
   const buttonListeners = new Map();
@@ -54,14 +54,18 @@ test("install button hides after installation and in standalone app mode", () =>
     addEventListener: (name, listener) => buttonListeners.set(name, listener)
   };
   const help = { hidden: true };
+  const reportNote = { hidden: true };
   const navigator = {};
   const document = {
     documentElement: { dataset: { publicDemo: "true" } },
-    querySelector: (selector) => selector === "#install-app-button" ? button : help
+    querySelector: (selector) => selector === "#install-app-button"
+      ? button
+      : selector === ".install-app-report-note" ? reportNote : help
   };
 
   vm.runInNewContext(script, { window, navigator, document, URL, console });
   assert.equal(button.hidden, false);
+  assert.equal(reportNote.hidden, false);
   assert.equal(window.location.href, "https://curiousbooster.test/");
   windowListeners.get("appinstalled")();
   assert.equal(button.hidden, true);
@@ -96,9 +100,19 @@ test("install button hides after installation and in standalone app mode", () =>
     addEventListener: (name, listener) => windowListeners.set(name, listener),
     matchMedia: () => ({ matches: false })
   };
+  const regularAppButton = {
+    hidden: true,
+    disabled: false,
+    addEventListener: (name, listener) => buttonListeners.set(name, listener)
+  };
+  const regularAppHelp = { hidden: true };
+  const regularAppReportNote = { hidden: false };
   const regularAppDocument = {
     ...document,
-    documentElement: { dataset: { publicDemo: "false" } }
+    documentElement: { dataset: { publicDemo: "false" } },
+    querySelector: (selector) => selector === "#install-app-button"
+      ? regularAppButton
+      : selector === ".install-app-report-note" ? regularAppReportNote : regularAppHelp
   };
   vm.runInNewContext(script, {
     window: regularAppWindow,
@@ -107,6 +121,10 @@ test("install button hides after installation and in standalone app mode", () =>
     URL,
     console
   });
+  assert.equal(regularAppButton.hidden, false);
+  assert.equal(regularAppReportNote.hidden, true);
+  await buttonListeners.get("click")();
+  assert.equal(regularAppHelp.hidden, false);
   windowListeners.get("appinstalled")();
   assert.equal(regularAppWindow.location.href, "https://curiousbooster.test/");
 });
