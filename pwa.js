@@ -1,3 +1,4 @@
+(() => {
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     const serviceWorkerUrl = new URL("service-worker.js", document.baseURI);
@@ -83,3 +84,4 @@ if (installButton) {
 
   window.addEventListener("appinstalled", handleAppInstalled);
 }
+})();

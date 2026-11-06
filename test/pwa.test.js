@@ -29,6 +29,7 @@ test("web manifest describes an installable CURIOUSBOOSTER app", () => {
     /AMBITIOUS/
   );
   assert.match(fs.readFileSync(path.join(APP_DIRECTORY, "pwa.js"), "utf8"), /beforeinstallprompt/);
+  assert.match(fs.readFileSync(path.join(APP_DIRECTORY, "pwa.js"), "utf8"), /^\(\(\) => \{/);
   assert.match(fs.readFileSync(path.join(APP_DIRECTORY, "pwa.js"), "utf8"), /display-mode: standalone/);
   assert.match(fs.readFileSync(path.join(APP_DIRECTORY, "index.html"), "utf8"), /Install \/ Download the App/);
   assert.match(fs.readFileSync(path.join(APP_DIRECTORY, "index.html"), "utf8"), /install-app-help/);
