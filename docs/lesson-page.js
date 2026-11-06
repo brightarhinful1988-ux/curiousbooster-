@@ -1885,6 +1885,18 @@ function renderLesson(selection) {
   addTextElement(firstPage, "h1", "reader-title", lesson.title);
   firstPage.append(createAudioReader(pages));
 
+  const readingIntroduction = document.createElement("section");
+  readingIntroduction.className = "reader-section lesson-reading-introduction";
+  addTextElement(readingIntroduction, "p", "eyebrow", "LESSON READING DOCUMENT");
+  addTextElement(readingIntroduction, "h2", "reading-subheading", "Start with the main idea");
+  addTextElement(readingIntroduction, "p", "reading-copy", lesson.intro);
+  const keyFact = document.createElement("aside");
+  keyFact.className = "reader-example";
+  addTextElement(keyFact, "strong", "", "KEY FACT");
+  addTextElement(keyFact, "p", "", lesson.fact);
+  readingIntroduction.append(keyFact);
+  firstPage.append(readingIntroduction);
+
   const teachingSections = getTeachingSections(lesson, branchName);
 
   if (lesson.learningNotes) {

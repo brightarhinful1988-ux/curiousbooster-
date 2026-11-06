@@ -23,6 +23,11 @@ test("public demo build includes all lessons without account features", (context
     fs.readFileSync(path.join(temporaryDirectory, "curriculum.json"), "utf8")
   );
   const lessons = catalogue.branches.flatMap((branch) => branch.lessons);
+  const photoAttributions = {};
+  vm.runInNewContext(
+    fs.readFileSync(path.join(temporaryDirectory, "assets", "lesson-photo-attributions.js"), "utf8"),
+    { window: photoAttributions }
+  );
 
   assert.match(html, /data-public-demo="true"/);
   assert.match(html, /public-demo-notice/);
@@ -31,8 +36,23 @@ test("public demo build includes all lessons without account features", (context
   assert.doesNotMatch(html, /install-report/);
   assert.equal(catalogue.branches.length, 8);
   assert.equal(lessons.length, 89);
-  assert.ok(lessons.every((lesson) => typeof lesson.intro === "string"));
+  assert.ok(lessons.every((lesson) =>
+    typeof lesson.intro === "string" &&
+    lesson.intro.length > 40 &&
+    typeof lesson.fact === "string" &&
+    lesson.fact.length > 10 &&
+    typeof lesson.explanation === "string" &&
+    lesson.explanation.length > 10
+  ));
   assert.ok(lessons.some((lesson) => lesson.learningNotes));
+  assert.ok(lessons.every((lesson) =>
+    lesson.id === "chemistry-periodic-table" ||
+    (typeof photoAttributions.lessonPhotoAttributions[lesson.id]?.path === "string" &&
+      fs.existsSync(path.join(
+        temporaryDirectory,
+        photoAttributions.lessonPhotoAttributions[lesson.id].path
+      )))
+  ), "each lesson should have an image available in the public build");
   assert.ok(fs.existsSync(path.join(temporaryDirectory, "lesson.html")));
   assert.ok(fs.existsSync(path.join(temporaryDirectory, "quiz.html")));
   assert.ok(fs.existsSync(path.join(temporaryDirectory, "service-worker.js")));
@@ -73,6 +93,8 @@ test("public demo build includes all lessons without account features", (context
   assert.match(quizSource, /level <= 10 \? "Foundation" : level <= 20 \? "Application" : "Challenge"/);
   assert.match(appSource, /lesson\.html\?lesson=\$\{encodeURIComponent\(lesson\.id\)\}/);
   assert.match(lessonSource, /new URLSearchParams\(window\.location\.search\)\.get\("lesson"\)/);
+  assert.match(lessonSource, /LESSON READING DOCUMENT/);
+  assert.match(lessonSource, /KEY FACT/);
   assert.match(lessonSource, /nextPage\.href = "#quiz-card"/);
   assert.match(quizSource, /new URLSearchParams\(window\.location\.search\)\.get\("lesson"\)/);
   assert.match(lessonHtml, /id="quiz-card"/);
