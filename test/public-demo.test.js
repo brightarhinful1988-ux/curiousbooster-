@@ -54,6 +54,8 @@ test("public demo build includes all lessons without account features", (context
   assert.match(serviceWorker, /DEMO_ONLY_FILES = \["curriculum\.json"\]/);
 
   const quizSource = fs.readFileSync(path.join(temporaryDirectory, "quiz-page.js"), "utf8");
+  const lessonSource = fs.readFileSync(path.join(temporaryDirectory, "lesson-page.js"), "utf8");
+  const appSource = fs.readFileSync(path.join(temporaryDirectory, "app-client.js"), "utf8");
   const questionBank = quizSource.match(/const challengeQuestions = (\[[\s\S]*?\n\]);/);
   assert.ok(questionBank, "the 30-level question bank should be present");
   const questions = vm.runInNewContext(`(${questionBank[1]})`);
@@ -68,4 +70,9 @@ test("public demo build includes all lessons without account features", (context
     typeof question.explanation === "string"
   ));
   assert.match(quizSource, /level <= 10 \? "Foundation" : level <= 20 \? "Application" : "Challenge"/);
+  assert.match(appSource, /lesson\.html\?lesson=\$\{encodeURIComponent\(lesson\.id\)\}/);
+  assert.match(lessonSource, /new URLSearchParams\(window\.location\.search\)\.get\("lesson"\)/);
+  assert.match(lessonSource, /quiz\.html\?lesson=\$\{encodeURIComponent\(lesson\.id\)\}/);
+  assert.match(quizSource, /new URLSearchParams\(window\.location\.search\)\.get\("lesson"\)/);
+  assert.match(serviceWorker, /curiousbooster-shell-v4/);
 });

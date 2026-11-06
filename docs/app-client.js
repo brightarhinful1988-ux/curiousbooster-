@@ -224,7 +224,7 @@
 
     const button = document.createElement("a");
     button.className = "read-lesson-button";
-    button.href = "lesson.html";
+    button.href = `lesson.html?lesson=${encodeURIComponent(lesson.id)}`;
     button.textContent = isPublicDemo
       ? "Read this lesson →"
       : unlocked
@@ -236,7 +236,7 @@
       event.preventDefault();
       if (isPublicDemo) {
         sessionStorage.setItem(READER_LESSON_KEY, JSON.stringify({ lessonId: lesson.id }));
-        window.location.assign("lesson.html");
+        window.location.assign(button.href);
         return;
       }
       button.setAttribute("aria-disabled", "true");
@@ -248,7 +248,7 @@
         if (!saveSelection()) {
           throw new Error("Could not save the lesson selection. Please check browser storage settings.");
         }
-        window.location.assign("lesson.html");
+        window.location.assign(button.href);
       } catch (error) {
         console.error("Could not unlock or open the lesson.", error);
         reportError(error.message || "The lesson could not be unlocked. Please try again.");

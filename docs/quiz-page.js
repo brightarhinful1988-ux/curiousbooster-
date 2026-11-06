@@ -230,6 +230,11 @@ function addTextElement(parent, tagName, className, text) {
 }
 
 function loadLesson() {
+  const requestedLessonId = new URLSearchParams(window.location.search).get("lesson");
+  if (requestedLessonId) {
+    return { lessonId: requestedLessonId };
+  }
+
   try {
     const saved = sessionStorage.getItem(READER_LESSON_KEY);
     if (!saved) {

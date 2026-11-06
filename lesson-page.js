@@ -1799,6 +1799,11 @@ function addReadingSection(parent, heading, paragraphs) {
 }
 
 function loadLesson() {
+  const requestedLessonId = new URLSearchParams(window.location.search).get("lesson");
+  if (requestedLessonId) {
+    return { lessonId: requestedLessonId };
+  }
+
   try {
     const saved = sessionStorage.getItem(READER_LESSON_KEY);
     if (!saved) {
@@ -2015,7 +2020,7 @@ function renderLesson(selection) {
 
   const nextPage = document.createElement("a");
   nextPage.className = "read-lesson-button";
-  nextPage.href = "quiz.html";
+  nextPage.href = `quiz.html?lesson=${encodeURIComponent(lesson.id)}`;
   nextPage.textContent = "Finish reading and continue to quiz →";
   thirdPage.append(nextPage);
 
