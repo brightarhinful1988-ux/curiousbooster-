@@ -56,6 +56,7 @@ test("public demo build includes all lessons without account features", (context
   const quizSource = fs.readFileSync(path.join(temporaryDirectory, "quiz-page.js"), "utf8");
   const lessonSource = fs.readFileSync(path.join(temporaryDirectory, "lesson-page.js"), "utf8");
   const appSource = fs.readFileSync(path.join(temporaryDirectory, "app-client.js"), "utf8");
+  const lessonHtml = fs.readFileSync(path.join(temporaryDirectory, "lesson.html"), "utf8");
   const questionBank = quizSource.match(/const challengeQuestions = (\[[\s\S]*?\n\]);/);
   assert.ok(questionBank, "the 30-level question bank should be present");
   const questions = vm.runInNewContext(`(${questionBank[1]})`);
@@ -72,7 +73,9 @@ test("public demo build includes all lessons without account features", (context
   assert.match(quizSource, /level <= 10 \? "Foundation" : level <= 20 \? "Application" : "Challenge"/);
   assert.match(appSource, /lesson\.html\?lesson=\$\{encodeURIComponent\(lesson\.id\)\}/);
   assert.match(lessonSource, /new URLSearchParams\(window\.location\.search\)\.get\("lesson"\)/);
-  assert.match(lessonSource, /quiz\.html\?lesson=\$\{encodeURIComponent\(lesson\.id\)\}/);
+  assert.match(lessonSource, /nextPage\.href = "#quiz-card"/);
   assert.match(quizSource, /new URLSearchParams\(window\.location\.search\)\.get\("lesson"\)/);
-  assert.match(serviceWorker, /curiousbooster-shell-v4/);
+  assert.match(lessonHtml, /id="quiz-card"/);
+  assert.match(lessonHtml, /<script src="quiz-page\.js" defer><\/script>/);
+  assert.match(serviceWorker, /curiousbooster-shell-v5/);
 });

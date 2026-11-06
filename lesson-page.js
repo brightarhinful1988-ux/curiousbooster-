@@ -2020,7 +2020,7 @@ function renderLesson(selection) {
 
   const nextPage = document.createElement("a");
   nextPage.className = "read-lesson-button";
-  nextPage.href = `quiz.html?lesson=${encodeURIComponent(lesson.id)}`;
+  nextPage.href = "#quiz-card";
   nextPage.textContent = "Finish reading and continue to quiz →";
   thirdPage.append(nextPage);
 

@@ -1,7 +1,7 @@
 const APP_BASE_URL = new URL(self.registration.scope);
 const appUrl = (path) => new URL(path, APP_BASE_URL).href;
 const APP_BASE_PATH = APP_BASE_URL.pathname;
-const CACHE_NAME = "curiousbooster-shell-v4";
+const CACHE_NAME = "curiousbooster-shell-v5";
 const APP_SHELL = [
   "index.html",
   "lesson.html",

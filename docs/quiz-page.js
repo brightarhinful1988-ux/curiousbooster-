@@ -1,3 +1,4 @@
+(() => {
 const READER_LESSON_KEY = "curious.reader-lesson";
 const COMPLETED_LESSONS_KEY = "curious.completed-lessons";
 const CHALLENGE_PROGRESS_KEY = "curious.science-challenge";
@@ -528,3 +529,4 @@ if (lessonSelection) {
 } else {
   renderMissingQuiz();
 }
+})();
